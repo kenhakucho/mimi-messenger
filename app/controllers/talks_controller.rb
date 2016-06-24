@@ -3,7 +3,7 @@ class TalksController < ApplicationController
   end
   
   def callback
-   if params["hub.verify_token"] == "hogehoge"
+   if params["hub.verify_token"] == "mimi"
       render json: params["hub.challenge"]
    else
       render json: "Error, wrong validation token"
