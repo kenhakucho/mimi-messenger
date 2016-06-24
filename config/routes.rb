@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  root '/api/fb_callback'
-
+ get 'api/fb_callback', to: 'talks#call_back'
+  
 end
