@@ -3,7 +3,7 @@ class TalksController < ApplicationController
   end
   
   def callback
-   if params["hub.verify_token"] == "771526623"
+   if params["hub.verify_token"] == "1150492266"
       render json: params["hub.challenge"]
    else
       render json: "Error, wrong validation token"
