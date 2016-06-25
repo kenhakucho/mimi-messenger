@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
- post 'api/fb_callback', to: 'talks#callback'
-  
+  match "api/fb_callback" => 'talks#callback', :via => [:get,:post]
 end
