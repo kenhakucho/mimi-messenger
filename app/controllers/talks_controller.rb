@@ -10,7 +10,7 @@ class TalksController < ApplicationController
       messaging_events = request_body["entry"][0]["messaging"]
 
       logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-      logger.info("messaging_events : " + messaging_events.count)
+      logger.info("messaging_events : #{messaging_events.count}")
       logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
       
       messaging_events.each do |event|
