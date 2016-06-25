@@ -10,7 +10,7 @@ class TalksController < ApplicationController
       messaging_events = request_body["entry"][0]["messaging"]
 
       logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-      logger.info("messaging_events : #{messaging_events.count}")
+      logger.info("messaging_events : #{messaging_events}")
       logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
       
       messaging_events.each do |event|
@@ -18,11 +18,6 @@ class TalksController < ApplicationController
         
         if !event["message"].nil? && !event["message"]["text"].nil?
           text = event["message"]["text"]
-
-          logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-          logger.info(p text)
-          logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-
           bot_response(sender, text)
         end
       end
