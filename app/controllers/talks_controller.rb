@@ -29,6 +29,7 @@ class TalksController < ApplicationController
         end
       end
 
+      logger.info("e"*20)
       status 201
       body ''
     end 
