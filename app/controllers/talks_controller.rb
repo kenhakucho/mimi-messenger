@@ -8,5 +8,6 @@ class TalksController < ApplicationController
    else
       render json: "Error, wrong validation token"
    end
+   
   end
 end
