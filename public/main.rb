@@ -1,40 +1,23 @@
-class TalksController < ApplicationController
-  require "json"
-  require "rest-client"
-  protect_from_forgery except: :callback
+require "json"
+require "rest-client"
 
-  def callback
-    message = params["entry"][0]["messaging"][0]    
-    
-    if message.include?("message")
-      sender = message["sender"]["id"]
-      text = message["message"]["text"]
-
-      endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=#{ENV["FACEBOOK_PAGE_TOKEN"]}" 
-      request_content = {recipient: {id:sender},
-                         message: {text: text}
-                        }
-      content_json = request_content.to_json
-
-      RestClient.post(endpoint_uri, content_json, {
-        'Content-Type' => 'application/json; charset=UTF-8'
-      }){ |response, request, result, &block|
-        p response
-        p request
-        p result
-      }
-    else
-      #botの発言
-    end
-
+  post "/callback" do 
     if request.body.read.present?
       request_body = JSON.parse(request.body.read) 
       logger.info("request_body : #{request_body}")
       messaging_events = request_body["entry"][0]["messaging"]
+
       messaging_events.each do |event|
         sender = event["sender"]["id"]
+        
         if !event["message"].nil? && !event["message"]["text"].nil?
           text = event["message"]["text"]
+          
+          logger.info("#"*20)
+          logger.info("sender : #{sender}")
+          logger.info("text : #{text}")
+          logger.info("#"*20)
+                    
           bot_response(sender, text)
         end
       end
