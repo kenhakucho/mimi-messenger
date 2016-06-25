@@ -1,7 +1,7 @@
 class TalksController < ApplicationController
-
   require "json"
-#  require "rest-client"
+  # require "rest-client"
+  protect_from_forgery except: :callback
 
   # def callback
   #   p params
@@ -33,7 +33,7 @@ class TalksController < ApplicationController
       logger.info("--------------------------------------------")
       logger.info(request.body.read)
       
-      request_body ||= JSON.parse(request.body.read, {:symbolize_names => true}) 
+      request_body = JSON.parse(request.body.read) 
       messaging_events = request_body["entry"][0]["messaging"]
 
       messaging_events.each do |event|
