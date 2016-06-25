@@ -35,6 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 gem 'pry-byebug', group: :development
 gem 'dotenv-rails'
+gem 'rest-client', '>= 1.8.0'
 
 # herokuのログ
 gem 'rails_12factor', group: :production
