@@ -37,6 +37,8 @@ class TalksController < ApplicationController
       # parse -> JSON -> generate
       request_body = JSON[request.body.read]
       # messaging_events = request_body["entry"][0]["messaging"]
+      logger.info("jsonjsonjsonjsonjsonjsonjsonjsonjsonjsonjson")
+      logger.info("request_body : #{request_body}")
       messaging_events = request_body[:entry][0][:messaging]
       
       messaging_events.each do |event|
