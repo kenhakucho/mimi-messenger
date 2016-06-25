@@ -1,7 +1,7 @@
  app.get('/webhook', function(req, res) {
  
-  var VALIDATION_TOKEN="EAAI9422tpG8BAJge4Hr6oTxrM6M0Ixzjo5WeUNG1gvVWhNXRdCY6mYjHLA8F0CAMYz8LZAZBJBYU6vmz39192ZCXJcWkkU8iXZAPnqYt3vXXl13XyF3HYr1H9frLwRGzbWuv1IvQTGmx4HAZCIgpgynIu2AFJXrlnd7MPBo78OQZDZD";
-   
+  var VALIDATION_TOKEN="EAAI9422tpG8BAFa3KMZBgdUEXcejJKY961vbVlPJ6G0FNYYeRzyytZB2gmmxeR4X3fGf9uWSSHAlkrZCNfIrV0fSF2ambmeobIF0CrJKJJZByl22NJW7jZBzd9dXkFzGwInS2FXAqBuB1S8ZBoQCUrM0SOAioUn0LQZAAKqtu7SkwZDZD"
+  
   if (req.query['hub.mode'] === 'subscribe' &&
       req.query['hub.verify_token'] === VALIDATION_TOKEN) {
     console.log("Validating webhook");
