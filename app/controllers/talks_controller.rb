@@ -8,8 +8,14 @@ class TalksController < ApplicationController
       request_body = JSON.parse(request.body.read) 
       logger.info("request_body : #{request_body}")
       messaging_events = request_body["entry"][0]["messaging"]
+      
       messaging_events.each do |event|
         sender = event["sender"]["id"]
+        
+        logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
+        logger.info(p sender)
+        logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
         if !event["message"].nil? && !event["message"]["text"].nil?
           text = event["message"]["text"]
           bot_response(sender, text)
