@@ -9,12 +9,13 @@ class TalksController < ApplicationController
       logger.info("request_body : #{request_body}")
       messaging_events = request_body["entry"][0]["messaging"]
 
-      logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-      logger.info("messaging_events : #{messaging_events}")
-      logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-      
       messaging_events.each do |event|
         sender = event["sender"]["id"]
+
+        logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        logger.info(p event)
+        logger.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+
         
         if !event["message"].nil? && !event["message"]["text"].nil?
           text = event["message"]["text"]
