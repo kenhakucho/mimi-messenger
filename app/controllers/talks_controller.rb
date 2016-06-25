@@ -1,6 +1,4 @@
 class TalksController < ApplicationController
-  require "json"
-  require "rest-client"
   protect_from_forgery except: :callback
 
   def callback
@@ -27,22 +25,22 @@ class TalksController < ApplicationController
       #botの発言
     end
 
-    if request.body.read.present?
-      request_body = JSON.parse(request.body.read) 
-      logger.info("request_body : #{request_body}")
-      messaging_events = request_body["entry"][0]["messaging"]
-      messaging_events.each do |event|
-        sender = event["sender"]["id"]
-        if !event["message"].nil? && !event["message"]["text"].nil?
-          text = event["message"]["text"]
-          bot_response(sender, text)
-        end
-      end
+    # if request.body.read.present?
+    #   request_body = JSON.parse(request.body.read) 
+    #   logger.info("request_body : #{request_body}")
+    #   messaging_events = request_body["entry"][0]["messaging"]
+    #   messaging_events.each do |event|
+    #     sender = event["sender"]["id"]
+    #     if !event["message"].nil? && !event["message"]["text"].nil?
+    #       text = event["message"]["text"]
+    #       bot_response(sender, text)
+    #     end
+    #   end
 
-      logger.info("e"*20)
-      status 201
-      body ''
-    end 
+    #   logger.info("e"*20)
+    #   status 201
+    #   body ''
+    # end 
   end
   
   def bot_response(sender, text)
