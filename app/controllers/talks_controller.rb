@@ -4,13 +4,13 @@ class TalksController < ApplicationController
   
   def callback
     token = "<TOKEN>"
-
-    message = params["entry"][0]["messaging"][0]    
+    logger.info(params)
+    
+    message = params["entry"][0]["messaging"][0] unless !params.present? || !params["entry"].present?
 
     if message.include?("message")
 
       #ユーザーの発言
-
       sender = message["sender"]["id"]
       text = message["message"]["text"]
 
