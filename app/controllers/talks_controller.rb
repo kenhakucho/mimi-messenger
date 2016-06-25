@@ -19,6 +19,12 @@ class TalksController < ApplicationController
         
         if !event["message"].nil? && !event["message"]["text"].nil?
           text = event["message"]["text"]
+          
+          logger.info("#"*20)
+          logger.info("sender : #{sender}")
+          logger.info("text : #{text}")
+          logger.info("#"*20)
+                    
           bot_response(sender, text)
         end
       end
@@ -30,7 +36,10 @@ class TalksController < ApplicationController
   
   def bot_response(sender, text)
     request_endpoint = "https://graph.facebook.com/v2.6/me/messages?access_token=#{ENV["FACEBOOK_PAGE_TOKEN"]}"
+
+    logger.info("1"*20)
     request_body = text_message_request_body(sender, text)
+    logger.info("w"*20)
     RestClient.post request_endpoint, request_body, content_type: :json, accept: :json
   end
   
