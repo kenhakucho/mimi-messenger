@@ -3,7 +3,7 @@ class TalksController < ApplicationController
   end
   
   def callback
-    token = "<TOKEN>"
+    token = "hogehoge"
     logger.info(params)
     
     message = params["entry"][0]["messaging"][0] unless !params.present? || !params["entry"].present?
