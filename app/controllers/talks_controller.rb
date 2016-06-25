@@ -4,8 +4,9 @@ class TalksController < ApplicationController
   
   def callback
     token = "EAAI9422tpG8BAFrKuTdGvZA4yKSmLCHwp6O0KI4vYEcmHqwhuKyMTwKR4C9ZCMuvLmRN8I3qsU5SmalrqPx1HFZArl2yToNA81VEWSDumPlNZBEtLTiOeuLQZClXOnw5wuqKZAGYIIL01L0WliMz3TFMGAt7l890XhU6V1zDT9qwZDZD"
+    logger.info("callback start ***************************************")
     logger.info(params)
-    
+    p params
     message = params["entry"][0]["messaging"][0] #unless !params.present? || !params["entry"].present?
 
     if message.include?("message")
