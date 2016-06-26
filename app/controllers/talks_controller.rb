@@ -8,7 +8,7 @@ class TalksController < ApplicationController
     
     if message.include?("message")
       sender = message["sender"]["id"]
-      text = message["message"]["text"] + "¥r¥nおれも"
+      text = message["message"]["text"]
       endpoint_uri = "https://graph.facebook.com/v2.6/me/messages?access_token=#{ENV["FACEBOOK_PAGE_TOKEN"]}" 
       request_content = {recipient: {id:sender},
                          message: {text: text}
@@ -18,6 +18,17 @@ class TalksController < ApplicationController
 #      result = bot_response(sender, text)
 #      RestClient.post(endpoint_uri, result, {
       RestClient.post(endpoint_uri, content_json, {
+        'Content-Type' => 'application/json; charset=UTF-8'
+      }){ |response, request, result, &block|
+        p response
+        p request
+        p result
+      }
+      
+      after_content = {recipient: {id:sender},
+                         message: {text: "おれも"}
+                        }.to_json      
+      RestClient.post(endpoint_uri, after_content, {
         'Content-Type' => 'application/json; charset=UTF-8'
       }){ |response, request, result, &block|
         p response
