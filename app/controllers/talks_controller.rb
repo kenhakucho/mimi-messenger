@@ -15,6 +15,10 @@ class TalksController < ApplicationController
                         }
       content_json = request_content.to_json
       
+      logger.info('new message' + ("---"*10))
+      logger.info("sender : #{sender}")
+      logger.info("text : #{text}")
+          
 #      result = bot_response(sender, text)
 #      RestClient.post(endpoint_uri, result, {
       RestClient.post(endpoint_uri, content_json, {
